@@ -1,3 +1,5 @@
+package actors;
+
 public class Akteur implements Leckerbissen {
     private final String NAME;
     private final int GRAMM;

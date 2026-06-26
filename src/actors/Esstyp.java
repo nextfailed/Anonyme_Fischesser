@@ -1,3 +1,5 @@
+package actors;
+
 public enum Esstyp {
     VEGANER("Veganer"),
     VEGETARIER("Vegetarier"),

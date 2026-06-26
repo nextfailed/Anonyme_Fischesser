@@ -1,3 +1,5 @@
+package actors;
+
 public class Seetang implements Leckerbissen {
     private final String NAME;
     private final int GRAMM;

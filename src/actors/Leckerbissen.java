@@ -1,3 +1,5 @@
+package actors;
+
 public interface Leckerbissen {
 
     int getGramm();

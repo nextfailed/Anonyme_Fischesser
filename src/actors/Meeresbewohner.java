@@ -1,3 +1,5 @@
+package actors;
+
 import java.util.List;
 
 public class Meeresbewohner extends Akteur {

@@ -1,3 +1,5 @@
+package actors;
+
 public class Taucher extends Akteur {
 
     public Taucher(String name, int gramm, boolean istLebendig) {
