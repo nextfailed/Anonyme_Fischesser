@@ -1,12 +1,11 @@
-public class Taucher implements Leckerbissen {
-    private final String NAME;
-    private final int GRAMM;
-    private final Nahrungstyp nahrungstyp = Nahrungstyp.FLEISCH;
+public class Taucher extends Akteur {
+
+    public Taucher(String name, int gramm, boolean istLebendig) {
+        super(name, gramm, Nahrungstyp.FLEISCH, istLebendig);
+    }
 
     public Taucher(String name, int gramm) {
-        super();
-        this.NAME = name;
-        this.GRAMM = gramm;
+        super(name, gramm, Nahrungstyp.FLEISCH, true);
     }
 
     @Override
