@@ -2,12 +2,8 @@ package actors;
 
 public class Taucher extends Akteur {
 
-    public Taucher(String name, int gramm, boolean istLebendig) {
-        super(name, gramm, Nahrungstyp.FLEISCH, istLebendig);
-    }
-
     public Taucher(String name, int gramm) {
-        super(name, gramm, Nahrungstyp.FLEISCH, true);
+        super(name, gramm, Nahrungstyp.FLEISCH);
     }
 
     @Override

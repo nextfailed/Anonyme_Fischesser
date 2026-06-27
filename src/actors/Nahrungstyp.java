@@ -2,7 +2,7 @@ package actors;
 
 public enum Nahrungstyp {
     PFLANZE("Pflanze"),
-    FISCH("actors.Fisch"),
+    FISCH("Fisch"),
     NICHT_ESSBAR("nicht essbar"),
     FLEISCH("Fleisch");
 
