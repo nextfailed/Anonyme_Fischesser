@@ -2,7 +2,7 @@ package actors;
 
 import java.util.List;
 
-public class Meeresbewohner extends Akteur {
+public abstract class Meeresbewohner extends Akteur {
     final int MAX_MAGENFUELLMENGE;
     private final Esstyp esstyp;
 

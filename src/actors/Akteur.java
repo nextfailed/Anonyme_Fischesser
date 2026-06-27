@@ -1,6 +1,6 @@
 package actors;
 
-public class Akteur implements Leckerbissen {
+public abstract class Akteur implements Leckerbissen {
     private final String NAME;
     private final int GRAMM;
     private final Nahrungstyp nahrungstyp;
