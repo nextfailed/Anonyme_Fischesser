@@ -24,6 +24,21 @@ public abstract class Meeresbewohner extends Akteur {
         this.esstyp = esstyp;
     }
 
+    @Override
+    public String toString(){
+        StringBuilder output = new StringBuilder();
+        String einruecken = "   ";
+
+        output.append(super.toString()).append('\n');
+        output.append(einruecken).append("Magen: ").append('\n');
+
+        for(Leckerbissen currentLeckerbissen : magen){
+            output.append(einruecken.repeat(2)).append('#').append(currentLeckerbissen.getName()).append('\n') ;
+        }
+
+
+        return output.toString();
+    }
 
     public Esstyp getEsstyp() {
         return esstyp;
