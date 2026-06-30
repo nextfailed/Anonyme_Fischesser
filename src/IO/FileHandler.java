@@ -33,14 +33,14 @@ public class FileHandler {
         return akteure;
     }
 
-    public static ArrayList<Object> readSceneAsList(File file) {
-        ArrayList<Object> szene = new ArrayList<>();
+    public static ArrayList<Leckerbissen> readSceneAsList(File file) {
+        ArrayList<Leckerbissen> szene = new ArrayList<>();
         try {
             ArrayList<String> fileStream = TextIO.read(file);
 
             for(String currentLine : fileStream) {
                 String[] arguments = splitArguments(currentLine);
-                Object leckerbissen = createLeckerbissen(arguments);
+                Leckerbissen leckerbissen = createLeckerbissen(arguments);
                 szene.add(leckerbissen);
             }
         }
@@ -61,40 +61,52 @@ public class FileHandler {
     }
 
     private static Akteur createAkteur(String[] arguments) throws ClassNotFoundException {
-        String akteurKlasse = arguments[0];
-        String akteurName = arguments[1];
-        Nahrungstyp akteurNahrungstyp = Nahrungstyp.valueOf(arguments[2]);
-        Esstyp akteurEsstyp = Esstyp.valueOf(arguments[3]);
-        int akteurGewicht = Integer.parseInt(arguments[4]);
-        int akteurAppetitGrenze = Integer.parseInt(arguments[5]);
 
-        if(akteurKlasse.equalsIgnoreCase("fisch")) {
-            return new Fisch(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+        try{
+            final String PACKAGE_NAME = "actors.";
+            String akteurKlasse = arguments[0];
+            String akteurName = arguments[1];
+            Nahrungstyp akteurNahrungstyp = Nahrungstyp.valueOf(arguments[2]);
+            Esstyp akteurEsstyp = Esstyp.valueOf(arguments[3]);
+            int akteurGewicht = Integer.parseInt(arguments[4]);
+            int akteurAppetitGrenze = Integer.parseInt(arguments[5]);
+
+            Class<?> klasse = Class.forName(PACKAGE_NAME + akteurKlasse);
+            Constructor<?> konstruktor = klasse.getDeclaredConstructor(String.class, int.class, Nahrungstyp.class, Esstyp.class, int.class);
+            Object akteur = konstruktor.newInstance(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+
+            return (Akteur) akteur;
         }
-        if(akteurKlasse.equalsIgnoreCase("schildkroete")) {
-            return new Schildkroete(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+        catch(ClassCastException e) {
+            System.err.println("Konnte Klasse nicht zu Akteur-Klasse casten.");
         }
-        if(akteurKlasse.equalsIgnoreCase("taucher")) {
-            return new Taucher(akteurName, akteurGewicht);
+        catch(ClassNotFoundException e) {
+            System.err.println("Konnte keine Klasse mit dem Namen '" + arguments[0] + "' finden.");
         }
-        if(akteurKlasse.equalsIgnoreCase("seestern")) {
-            // TODO Seestern
+        catch(NoSuchMethodException e) {
+            System.err.println("Die Klasse '" + arguments[0] + "' besitzt keinen passenden Konstruktor.");
         }
-        else {
-            throw new ClassNotFoundException("Die Klasse " + akteurKlasse + " wurde nicht gefunden.");
+        catch(Exception e) {
+            System.err.println("Konnte keine Instanz der Klasse '" + arguments[0] + "' mit diesen Parametern erstellen.");
         }
 
         return null;
     }
 
-    private static Object createLeckerbissen(String[] arguments) {
+    private static Leckerbissen createLeckerbissen(String[] arguments) {
         try {
+            final String PACKAGE_NAME = "actors.";
             String leckerbissenKlasse = arguments[0];
             int leckerbissenGewicht = Integer.parseInt(arguments[1]);
-            Class<?> klasse = Class.forName(arguments[0]);
+
+            Class<?> klasse = Class.forName(PACKAGE_NAME + leckerbissenKlasse);
             Constructor<?> konstruktor = klasse.getDeclaredConstructor(int.class);
             Object leckerbissen = konstruktor.newInstance(leckerbissenGewicht);
-            return leckerbissen;
+
+            return (Leckerbissen) leckerbissen;
+        }
+        catch(ClassCastException e) {
+            System.err.println("Konnte Klasse nicht zu Leckerbissen-Klasse casten.");
         }
         catch(ClassNotFoundException e) {
             System.err.println("Konnte keine Klasse mit dem Namen '" + arguments[0] + "' finden.");

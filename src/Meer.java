@@ -13,6 +13,6 @@ public class Meer {
         File szeneDatei = new File(args[1]);
 
         ArrayList<Akteur> akteure = FileHandler.readAkteureAsList(akteureDatei);
-        // ArrayList<Leckerbissen> leckerbissens = FileHandler.readSceneAsList(szeneDatei);
+        ArrayList<Leckerbissen> leckerbissens = FileHandler.readSceneAsList(szeneDatei);
     }
 }
