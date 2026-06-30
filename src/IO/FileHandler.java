@@ -53,7 +53,7 @@ public class FileHandler {
         return szene;
     }
 
-    private static String[] splitArguments(String line) throws IllegalArgumentException {
+    public static String[] splitArguments(String line) throws IllegalArgumentException {
         if(!line.contains(",")) {
             throw new IllegalArgumentException("Argumente wurden nicht mit ',' getrennt.");
         }

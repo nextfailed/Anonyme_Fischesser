@@ -15,4 +15,11 @@ public class Meer {
         ArrayList<Akteur> akteure = FileHandler.readAkteureAsList(akteureDatei);
         ArrayList<Leckerbissen> leckerbissens = FileHandler.readSceneAsList(szeneDatei);
     }
+
+    private static String[] splitArguments(String line) throws IllegalArgumentException {
+        if(!line.contains(",")) {
+            throw new IllegalArgumentException("Argumente wurden nicht mit ',' getrennt.");
+        }
+        return line.split(",");
+    }
 }
