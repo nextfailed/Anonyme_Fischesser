@@ -27,9 +27,6 @@ public class FileHandler {
         catch(NullPointerException e) {
             System.err.printf(e.getMessage());
         }
-        catch(ClassNotFoundException e) {
-            System.err.println(e.getMessage());
-        }
         return akteure;
     }
 
@@ -53,6 +50,12 @@ public class FileHandler {
         return szene;
     }
 
+    /**
+     * Teilt die Argumente aus einer Zeile der Datei bei jedem ','.
+     * @param line Zu teilende Zeile
+     * @return Argumente als String[]
+     * @throws IllegalArgumentException
+     */
     public static String[] splitArguments(String line) throws IllegalArgumentException {
         if(!line.contains(",")) {
             throw new IllegalArgumentException("Argumente wurden nicht mit ',' getrennt.");
@@ -60,7 +63,14 @@ public class FileHandler {
         return line.split(",");
     }
 
-    private static Akteur createAkteur(String[] arguments) throws ClassNotFoundException {
+    /**
+     * Versucht ein {@code Akteur}-Objekt mit dem ersten String im übergebenen Array zu instanziieren.
+     * Die anderen Argumente im übergebenen Array werden entsprechend zu den Parametern des Objekts
+     * gecastet.
+     * @param arguments String-Array, das alle Parameter des zu kreierenden Objekts enthält.
+     * @return Instanz eines {@code Akteur}-Objekts
+     */
+    private static Akteur createAkteur(String[] arguments) {
 
         try{
             final String PACKAGE_NAME = "actors.";
@@ -93,6 +103,14 @@ public class FileHandler {
         return null;
     }
 
+    /**
+     * Versucht ein Objekt, dass das {@code Leckerbissen}-Interface implementiert,
+     * mit dem ersten String im übergebenen Array zu instanziieren.
+     * Die anderen Argumente im übergebenen Array werden entsprechend zu den Parametern des Objekts
+     * gecastet.
+     * @param arguments String-Array, das alle Parameter des zu kreierenden Objekts enthält.
+     * @return Instanz eines {@code Leckerbissen}-Objekts
+     */
     private static Leckerbissen createLeckerbissen(String[] arguments) {
         try {
             final String PACKAGE_NAME = "actors.";
