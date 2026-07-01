@@ -7,4 +7,3 @@ public class FrisstSichSelbstException extends FressException {
         super(message);
     }
 }
-

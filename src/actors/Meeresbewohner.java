@@ -1,5 +1,6 @@
 package actors;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.*;
@@ -28,6 +29,7 @@ public abstract class Meeresbewohner extends Akteur {
         super(name, gramm, nahrungstyp);
         this.APPETIT_GRENZE = maxMagenfuellmenge;
         this.esstyp = esstyp;
+        this.magen = new ArrayList<>();
     }
 
     @Override
@@ -72,7 +74,7 @@ public abstract class Meeresbewohner extends Akteur {
      * Der Meeresbewohner versucht den mitgegebenen Leckerbissen zu verspeisen.
      * Dabei wird ueber mehrere huerden geparsed, bis alle Auffaelligkeiten bereinigt sind und der Leckerbissen mit gefressen() gefressen 
      * und in den Magen-Array aufgenommen wird.
-     * Nach dem fressen lebt der Leckerbissen nichtmehr.
+     * Nach dem Fressen lebt der Leckerbissen nicht vmehr.
      * 
      * Wirft logischerweise einen Fehler, falls der Fisch bereits gefressen wurde und daher nichtmehr am leben ist.
      * 
@@ -98,27 +100,31 @@ public abstract class Meeresbewohner extends Akteur {
             throw new NullPointerException("Der Leckerbissen ist undefiniert.");
         }
 
+        if(this.equals(leckerbissen)){
+            throw new FrisstSichSelbstException(this.NAME + " versucht sich selbst zu essen.");
+        }
+
         neuesGewicht = leckerbissen.getGramm();
 
         // Prueft, ob der Nahrungstyp dem Esstyp entspricht.
         if(!esstyp.akzeptiert(leckerbissen.getNahrungstyp())){
-            throw new FrisstNichtException("Der Leckerbissen " + leckerbissen.getName() + "steht nicht auf der Speisekarte des Meeresbewohners" + this.getName());
+            throw new FrisstNichtException("Der Leckerbissen " + leckerbissen.getName() + " steht nicht auf der Speisekarte des Meeresbewohners " + this.getName() + ".");
         }
 
-        // Prueft, ob, wenn der Leckerbissen dem Esstyp entspricht, der Leckerbissen gefressen werden konnte. (Beispiel falls nicht: ist nichtmehr am leben).
+        // Prueft, ob, wenn der Leckerbissen dem Esstyp entspricht, der Leckerbissen gefressen werden konnte. (Beispiel falls nicht: ist nicht mehr am leben).
         if(!leckerbissen.gefressen()){
             StringBuilder grund = new StringBuilder(); 
             
             grund.append(leckerbissen.getName()).append(" konnte nicht gefressen werden."); 
 
-            if(!leckerbissen.istLebendig()) grund.append(" (lebt nichtmehr)");
+            if(!leckerbissen.istLebendig()) grund.append(" (").append(leckerbissen.getName()).append(" lebt nicht mehr.)");
                 
             throw new FressException(grund.toString());
         };
 
         // Prueft, ob der Meeresbewohner nicht bereits vollgefressen ist.
         if(berechneAktuellerAppetite() < 0){
-            throw new VollerMagenException(this.NAME + " ist vollgefressen und kann daher " + leckerbissen.getName() + " nichtmher aufnehmen.");
+            throw new VollerMagenException(this.NAME + " ist vollgefressen und kann daher " + leckerbissen.getName() + " nicht mehr aufnehmen.");
         }
         
         // Leckerbissen wird dem Magen hinzugefuegt, das abgespeicherte Gewicht wird auf das Gewicht und den Appetit uebertragen.

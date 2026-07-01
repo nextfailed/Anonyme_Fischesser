@@ -1,9 +1,8 @@
 package IO;
 
-import actors.Akteur;
 import actors.Leckerbissen;
-import exceptions.UnbekannterAkteurException;
-import exceptions.UnbekannterLeckerbissenException;
+import actors.Meeresbewohner;
+import exceptions.*;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,7 +26,7 @@ public class Geschichtenerzaehler {
      * @param akteurListe Liste aller vorhandenen Akteure
      * @param szene Liste der Ereignisse
      */
-    public static void schreibeGeschichte(ArrayList<Akteur> akteurListe, ArrayList<String> szene) {
+    public static void schreibeGeschichte(ArrayList<Leckerbissen> akteurListe, ArrayList<String> szene) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("#### START ####");
         stringBuilder.append("\n");
@@ -37,27 +36,29 @@ public class Geschichtenerzaehler {
                 String[] ereignisArgumente = FileHandler.splitArguments(aktuellesEreignis);
 
                 String akteurName = ereignisArgumente[0];
-                Akteur aktuellerAkteur;
+                String snackName = ereignisArgumente[1];
+                Leckerbissen aktuellerAkteur;
+                Leckerbissen akteullerSnack;
 
                 if(!akteurListe.toString().contains(akteurName)) {
                     throw new UnbekannterAkteurException(akteurName + " befindet sich nicht in diesen Gewässern.");
                 }
                 else {
-                    aktuellerAkteur = getAkteurMitNamen(akteurListe, akteurName);
+                    aktuellerAkteur = getLeckerbissenMitNamen(akteurListe, akteurName);
                 }
 
-                String leckerbissenName = ereignisArgumente[1];
-                Leckerbissen aktuellerLeckerbissen;
-
-//                if(!leckerbissenListe.toString().contains(leckerbissenName)) {
-//                    throw new UnbekannterLeckerbissenException(leckerbissenName + " befindet sich nicht in diesen Gewässern.");
-//                }
-//                else {
-//                    aktuellerLeckerbissen = getLeckerbissenMitNamen(leckerbissenListe, leckerbissenName);
-//                }
+                if(!akteurListe.toString().contains(snackName)) {
+                    throw new UnbekannterLeckerbissenException(snackName + " befindet sich nicht in diesen Gewässern.");
+                }
+                else {
+                    akteullerSnack = getLeckerbissenMitNamen(akteurListe, snackName);
+                }
 
                 // Lass den Akteur den Leckerbissen verspeisen -- oder auch nicht.
-                //TODO
+                if(aktuellerAkteur instanceof Meeresbewohner) {
+                    ((Meeresbewohner) aktuellerAkteur).fressen(akteullerSnack);
+                }
+
             }
             catch(UnbekannterAkteurException e) {
                 stringBuilder.append(e.getMessage());
@@ -67,7 +68,14 @@ public class Geschichtenerzaehler {
                 stringBuilder.append(e.getMessage());
                 stringBuilder.append("\n");
             }
-
+            catch(FrisstNichtException e) {
+                stringBuilder.append(e.getMessage());
+                stringBuilder.append("\n");
+            }
+            catch(FressException e) {
+                stringBuilder.append(e.getMessage());
+                stringBuilder.append("\n");
+            }
         }
 
         stringBuilder.append("#### ENDE ####");
@@ -82,9 +90,9 @@ public class Geschichtenerzaehler {
      * @param akteurName Name des Akteurs
      * @return {@code Akteur}-Objekt
      */
-    private static Akteur getAkteurMitNamen(ArrayList<Akteur> akteurListe, String akteurName) {
-        for(Akteur aktuellerAkteur : akteurListe) {
-            if(!aktuellerAkteur.toString().contains(akteurName)) {
+    private static Leckerbissen getLeckerbissenMitNamen(ArrayList<Leckerbissen> akteurListe, String akteurName) {
+        for(Leckerbissen aktuellerAkteur : akteurListe) {
+            if(!aktuellerAkteur.getName().contains(akteurName)) {
                 continue;
             }
             return aktuellerAkteur;
