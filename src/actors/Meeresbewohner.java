@@ -2,10 +2,7 @@ package actors;
 
 import java.util.List;
 
-import exceptions.BereitsTotException;
-import exceptions.FressException;
-import exceptions.FrisstNichtException;
-import exceptions.VollerMagenException;
+import exceptions.*;
 
 /**
  * Meeresbewohner sind Akteure, die einen Magen besitzen und Leckerbissen verspeisen koennen.
