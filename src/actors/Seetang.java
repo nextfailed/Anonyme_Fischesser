@@ -1,6 +1,6 @@
 package actors;
 
-public class Seetang extends SimplerLeckerbissen{
+public class Seetang extends Snack {
     public static final String DEFAULT_NAME = "Seetang";
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.PFLANZE;
     public static final int DEFAULT_GRAMM = 2;
