@@ -2,6 +2,7 @@ package actors;
 
 import java.util.List;
 
+import exceptions.BereitsTotException;
 import exceptions.FressException;
 import exceptions.FrisstNichtException;
 import exceptions.VollerMagenException;
@@ -11,8 +12,8 @@ import exceptions.VollerMagenException;
  * Meeresbewohner
  */
 public abstract class Meeresbewohner extends Akteur {
-    final int APPETIT_GRENZE; // In Gramm
-    protected int momentanerAppetit;
+    public final int APPETIT_GRENZE; // In Gramm
+    protected int momentanerAppetit; // In Gramm
 
     private final Esstyp esstyp;
 
@@ -36,6 +37,7 @@ public abstract class Meeresbewohner extends Akteur {
     /**
      * Gibt den Namen und die jeweilige Statistik eines Meeresbewohners, sowie den Mageninhalt (Nur Namenauflistung) als String zurueck.
      * Ruft dabei Super.toString() auf und fuegt die Werte der Oberklasse.toString() dem String als Vorreiter hinzu.
+     * @return String-Ausgabe mit Namen, Statistik und Mageninhalt
      */
     public String toString(){
         StringBuilder output = new StringBuilder();
@@ -61,9 +63,9 @@ public abstract class Meeresbewohner extends Akteur {
     }
 
     /**
-     * Berechnet die Differenz zwischen dem Maximalen Appetit und dem momentanen Appetit.
-     * Bei einer Rueckgabe von < 0 ist noch moegliche Appetit ueberschritten. 
-     * @return wie viel Appetit noch vorhanden ist
+     * Berechnet die Differenz zwischen dem Maximalen Appetit-Level und dem momentanen Appetit-Level.
+     * Bei einer Rueckgabe von < 0 ist der Appetit ueberschritten. 
+     * @return wie viel Appetit der Meeresbewohner noch hat 
      */
     public int berechneAktuellerAppetite(){
         return APPETIT_GRENZE - momentanerAppetit;
@@ -74,12 +76,21 @@ public abstract class Meeresbewohner extends Akteur {
      * Dabei wird ueber mehrere huerden geparsed, bis alle Auffaelligkeiten bereinigt sind und der Leckerbissen mit gefressen() gefressen 
      * und in den Magen-Array aufgenommen wird.
      * Nach dem fressen lebt der Leckerbissen nichtmehr.
+     * 
+     * Wirft logischerweise einen Fehler, falls der Fisch bereits gefressen wurde und daher nichtmehr am leben ist.
+     * 
      * @param leckerbissen Zu fressender Leckerbissen
-     * @throws FressException verschiedene Gruende, wie nichtmehr am Leben oder passt nicht zum Fresstypen
+     * @throws FressException verschiedene Fress-Exceptions, wie "nichtmehr am Leben" oder "passt nicht zum Fresstypen"
+     * @throws BereitsTotException wird geworfen, falls der Meeresbewohner versucht etwas zu essen, jedoch bereits tot ist 
      * @throws NullPointerException falls der Leckerbissen Null ist
      */
     public void fressen(Leckerbissen leckerbissen) throws FressException, NullPointerException{
         int neuesGewicht; // Speichert das Gewicht des Leckerbissens ab, da es bei dem Aufruf von gefressen() automatisch auf 0 gesetzt wird.
+
+        // Prueft, ob der Meeresbewohner definiert und noch am Leben ist.
+        if(!this.istLebendig()){
+            throw new BereitsTotException(this.NAME + " lebt nichtmehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
+        }
 
         // Prueft, ob das Leckerbissen-Objekt nicht leer ist.
         if(leckerbissen == null){
@@ -109,7 +120,7 @@ public abstract class Meeresbewohner extends Akteur {
             throw new VollerMagenException(this.NAME + " ist vollgefressen und kann daher " + leckerbissen.getName() + " nichtmher aufnehmen.");
         }
         
-        // Leckerbissen wird dem Magen hinzugefuegt, das Gewicht des Leckerbissens wird auf 0 gesetzt und der Appetit wird um das Gewicht erhoeht.
+        // Leckerbissen wird dem Magen hinzugefuegt, das abgespeicherte Gewicht wird auf das Gewicht und den Appetit uebertragen.
         magen.add(leckerbissen);
         this.momentanerAppetit += neuesGewicht;
         this.GRAMM += neuesGewicht;

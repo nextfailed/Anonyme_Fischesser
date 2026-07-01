@@ -34,7 +34,7 @@ public abstract class Akteur implements Leckerbissen {
     }
 
     /**
-     * @return Name der Instanz
+     * @return Name des Akteurs
      */
     public String getName() {
         return NAME;
@@ -42,7 +42,7 @@ public abstract class Akteur implements Leckerbissen {
 
     @Override
     /**
-     * @return Gewicht
+     * @return Gewicht des Akteurs
      */
     public int getGramm() {
         return GRAMM;
