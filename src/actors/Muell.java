@@ -1,5 +1,10 @@
 package actors;
 
+/**
+ * Muell ist vom Typ 'Snack', ungeniessbar und kann nicht von Fischen verdaut werden.
+ * Muell ist automatisch nicht lebendig und gibt bei dem Aufruf der istLebendig() immer false zurueck.
+ * Muell
+ */
 public class Muell extends Snack {
     public static final String DEFAULT_NAME = "Muell";
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.NICHT_ESSBAR;
@@ -21,7 +26,7 @@ public class Muell extends Snack {
     }
 
     /**
-     * Der Default-Wert wird mitgegbeen, falls nichts mitgegeben wurde.
+     * Der Default-Wert wird mitgegeben, falls nichts mitgegeben wurde.
      */
     public Muell() {
         this(DEFAULT_GRAMM);
@@ -37,11 +42,19 @@ public class Muell extends Snack {
     }
 
     @Override
+    /**
+     * Gibt den allgemeinen Nahrungstypen zurueck, damit dieser im Super-Konstruktor fuer jede Instanz gesetzt wurde.
+     * @return Default-Nahrungstyp
+     */
     protected Nahrungstyp setNahrungstyp(){
         return ALLGEMEINER_NAHRUNGSTYP;
     };
 
     @Override
+    /**
+     * Gibt den Default-Namen jeder Muell-Instanz zurueck.
+     * @return Default-Namen 'Muell'
+     */
     public String getDefaultName() {
         return DEFAULT_NAME;
     }

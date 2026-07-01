@@ -7,7 +7,7 @@ import actors.Leckerbissen;
 
 public class Meer {
 
-    public static void main(java.lang.String[] args) {
+    public static void main(String[] args) {
 
         File akteureDatei = new File(args[0]);
         File szeneDatei = new File(args[1]);
@@ -18,7 +18,7 @@ public class Meer {
         Geschichtenerzaehler.schreibeGeschichte(akteure, szene);
     }
 
-    private static java.lang.String[] splitArguments(java.lang.String line) throws IllegalArgumentException {
+    private static String[] splitArguments(String line) throws IllegalArgumentException {
         if(!line.contains(",")) {
             throw new IllegalArgumentException("Argumente wurden nicht mit ',' getrennt.");
         }
