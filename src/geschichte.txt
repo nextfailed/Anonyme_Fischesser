@@ -1,2 +1,5 @@
 #### START ####
+Der Leckerbissen Steve steht nicht auf der Speisekarte des Meeresbewohners Hammer.
+Der Leckerbissen Nemo steht nicht auf der Speisekarte des Meeresbewohners Bruce.
+Seetang konnte nicht gefressen werden. (Seetang lebt nicht mehr.)
 #### ENDE ####

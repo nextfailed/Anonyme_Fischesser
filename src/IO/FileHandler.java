@@ -19,15 +19,44 @@ public class FileHandler {
      * @param file Zu lesende Datei
      * @return Liste aller Ereignisse in der Szene
      */
-    public static ArrayList<Akteur> readAkteureAsList(File file) {
-        ArrayList<Akteur> akteure = new ArrayList<>();
+    public static ArrayList<Leckerbissen> readAkteureAsList(File file) {
+        ArrayList<Leckerbissen> leckerbissenListe = new ArrayList<>();
         try {
-            ArrayList<java.lang.String> fileStream = TextIO.read(file);
+            ArrayList<String> fileStream = TextIO.read(file);
 
-            for(java.lang.String currentLine : fileStream) {
-                java.lang.String[] arguments = splitArguments(currentLine);
-                Akteur newAkteur = createAkteur(arguments);
-                akteure.add(newAkteur);
+            for(String currentLine : fileStream) {
+                String[] arguments = splitArguments(currentLine);
+
+                Leckerbissen newLeckerbissen;
+
+                switch(arguments[0].toLowerCase()) {
+                    case "fisch":
+                        newLeckerbissen = new Fisch(arguments[1], Integer.parseInt(arguments[4]), Esstyp.valueOf(arguments[3]), Integer.parseInt(arguments[5]));
+                        leckerbissenListe.add(newLeckerbissen);
+                        break;
+                    case "schildkroete":
+                        newLeckerbissen = new Schildkroete(arguments[1], Integer.parseInt(arguments[4]), Esstyp.valueOf(arguments[3]), Integer.parseInt(arguments[5]));
+                        leckerbissenListe.add(newLeckerbissen);
+                        break;
+                    case "seestern":
+                        newLeckerbissen = new Seestern(arguments[1], Integer.parseInt(arguments[4]), Nahrungstyp.valueOf(arguments[2]), Esstyp.valueOf(arguments[3]), Integer.parseInt(arguments[5]));
+                        leckerbissenListe.add(newLeckerbissen);
+                        break;
+                    case "taucher":
+                        newLeckerbissen = new Taucher(arguments[1], Integer.parseInt(arguments[2]));
+                        leckerbissenListe.add(newLeckerbissen);
+                        break;
+                    case "muell":
+                        newLeckerbissen = new Muell(Integer.parseInt(arguments[1]));
+                        leckerbissenListe.add(newLeckerbissen);
+                        break;
+                    case "seetang":
+                        newLeckerbissen = new Seetang(Integer.parseInt(arguments[1]));
+                        leckerbissenListe.add(newLeckerbissen);
+                    default:
+                        //TODO
+                        break;
+                }
             }
         }
         catch(IOException e) {
@@ -36,7 +65,7 @@ public class FileHandler {
         catch(NullPointerException e) {
             System.err.printf(e.getMessage());
         }
-        return akteure;
+        return leckerbissenListe;
     }
 
     /**
@@ -119,7 +148,7 @@ public class FileHandler {
      * @param arguments String-Array, das alle Parameter des zu kreierenden Objekts enthält.
      * @return Instanz eines {@code Leckerbissen}-Objekts
      */
-    private static Leckerbissen createLeckerbissen(String[] arguments) {
+    private static Leckerbissen createSnack(String[] arguments) {
         try {
             final String PACKAGE_NAME = "actors.";
             String leckerbissenKlasse = arguments[0];
