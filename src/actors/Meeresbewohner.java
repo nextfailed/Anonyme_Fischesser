@@ -92,6 +92,10 @@ public abstract class Meeresbewohner extends Akteur {
             throw new BereitsTotException(this.NAME + " lebt nichtmehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
         }
 
+        if(this.equals(leckerbissen)){
+            throw new FrisstSichSelbstException(this.NAME + " versucht sich selbst zu essen.");
+        }
+
         // Prueft, ob das Leckerbissen-Objekt nicht leer ist.
         if(leckerbissen == null){
             throw new NullPointerException("Der Leckerbissen ist undefiniert.");

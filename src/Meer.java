@@ -1,18 +1,27 @@
 import java.io.File;
 import java.util.ArrayList;
 
-import IO.AkteurCreator;
+import IO.*;
 import actors.Akteur;
+import actors.Leckerbissen;
 
 public class Meer {
 
-    public static void main(String[] args) {
-        File akteureDatei;
-        if(args.length == 0) akteureDatei = new File("./akteure.txt");
+    public static void main(java.lang.String[] args) {
 
-        else akteureDatei = new File(args[0]);
-//        File szeneDatei = new File(args[1]);
+        File akteureDatei = new File(args[0]);
+        File szeneDatei = new File(args[1]);
 
-        ArrayList<Akteur> akteure = AkteurCreator.readAkteureAsList(akteureDatei);
+        ArrayList<Akteur> akteure = FileHandler.readAkteureAsList(akteureDatei);
+        ArrayList<String> szene = FileHandler.readSceneAsList(szeneDatei);
+
+        Geschichtenerzaehler.schreibeGeschichte(akteure, szene);
+    }
+
+    private static java.lang.String[] splitArguments(java.lang.String line) throws IllegalArgumentException {
+        if(!line.contains(",")) {
+            throw new IllegalArgumentException("Argumente wurden nicht mit ',' getrennt.");
+        }
+        return line.split(",");
     }
 }
