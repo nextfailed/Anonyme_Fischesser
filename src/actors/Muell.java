@@ -61,6 +61,10 @@ public class Muell extends Snack {
         return DEFAULT_NAME;
     }
 
+    /**
+     * Gibt jeder {@code Muell}-Instanz ihre eigene ID zum identifizieren.
+     * @return ID des erstellten Snacks
+     */
     @Override
     protected int getCurrentID() {
         return ID_Counter++;
