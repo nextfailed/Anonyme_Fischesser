@@ -47,7 +47,7 @@ public class Seetang extends Snack{
     }
 
     /**
-     * Gibt jeder Seetang-Instanz ihre eigene ID zum identifizieren.
+     * Gibt jeder Seetang-Instanz ihre eigene ID zum Identifizieren.
      * @return ID des erstellten Snacks
      */
     @Override

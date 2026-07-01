@@ -14,7 +14,7 @@ public enum Esstyp {
     FLEXITARIER("Flexitarier", Nahrungstyp.FLEISCH, Nahrungstyp.FISCH),
     FLEISCHESSER("Fleischesser", Nahrungstyp.FLEISCH),
 
-    ALLES_ESSER("Allesessen", Nahrungstyp.values());
+    ALLES_ESSER("Allesesser", Nahrungstyp.values());
 
 
 
@@ -23,8 +23,7 @@ public enum Esstyp {
     final Nahrungstyp[] isstDies;
 
     /**
-     * 
-     * @param typname Der Name des Typens (zB: 'Veganer')
+     * @param typname Der Name des Types (z.B. 'Veganer')
      * @param isstDies Was der Nahrungstyp verspeisen darf
      */
     Esstyp(String typname, Nahrungstyp... isstDies) {
@@ -48,7 +47,7 @@ public enum Esstyp {
     /**
      * Ist statisch aufrufbar.
      * Gibt eine ArrayListe mit für den Esstyp erlaubte Typen aus.
-     * zB: Eingabe von Fleisch -> Flexitarier, Fleischesser, Alles Esser 
+     * z.B.: Eingabe von Fleisch → Flexitarier, Fleischesser, alles Esser
      * 
      * @return gefundene Esstypen als Array
      */

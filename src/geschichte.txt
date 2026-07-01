@@ -1,5 +1,10 @@
 #### START ####
 Der Leckerbissen Steve steht nicht auf der Speisekarte des Meeresbewohners Hammer.
 Der Leckerbissen Nemo steht nicht auf der Speisekarte des Meeresbewohners Bruce.
-Seetang konnte nicht gefressen werden. (Seetang lebt nicht mehr.)
+Seetang #0 konnte nicht gefressen werden. (Seetang #0 lebt nicht mehr.)
+Der Leckerbissen Crush steht nicht auf der Speisekarte des Meeresbewohners Marlin.
+Der Leckerbissen Muell #0 steht nicht auf der Speisekarte des Meeresbewohners Puff.
+Der Leckerbissen Lars steht nicht auf der Speisekarte des Meeresbewohners Bella.
+Lars versucht sich selbst zu essen.
+Lars lebt nichtmehr und kann daher Andre nicht verspeisen.
 #### ENDE ####

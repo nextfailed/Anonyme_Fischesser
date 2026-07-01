@@ -15,7 +15,7 @@ public abstract class Meeresbewohner extends Akteur {
 
     private final Esstyp esstyp;
 
-    private List<Leckerbissen> magen;
+    private final List<Leckerbissen> magen;
 
     /**
      * 
@@ -32,12 +32,12 @@ public abstract class Meeresbewohner extends Akteur {
         this.magen = new ArrayList<>();
     }
 
-    @Override
     /**
      * Gibt den Namen und die jeweilige Statistik eines Meeresbewohners, sowie den Mageninhalt (Nur Namenauflistung) als String zurueck.
      * Ruft dabei Super.toString() auf und fuegt die Werte der Oberklasse.toString() dem String als Vorreiter hinzu.
      * @return String-Ausgabe mit Namen, Statistik und Mageninhalt
      */
+    @Override
     public String toString(){
         StringBuilder output = new StringBuilder();
         String einruecken = "   ";
@@ -74,12 +74,12 @@ public abstract class Meeresbewohner extends Akteur {
      * Der Meeresbewohner versucht den mitgegebenen Leckerbissen zu verspeisen.
      * Dabei wird ueber mehrere huerden geparsed, bis alle Auffaelligkeiten bereinigt sind und der Leckerbissen mit gefressen() gefressen 
      * und in den Magen-Array aufgenommen wird.
-     * Nach dem Fressen lebt der Leckerbissen nicht vmehr.
-     * 
-     * Wirft logischerweise einen Fehler, falls der Fisch bereits gefressen wurde und daher nichtmehr am leben ist.
-     * 
+     * Nach dem Fressen lebt der Leckerbissen nicht mehr.
+     * <p>
+     *     Wirft logischerweise einen Fehler, falls der Fisch bereits gefressen wurde und daher nicht mehr am Leben ist.
+     * </p>
      * @param leckerbissen Zu fressender Leckerbissen
-     * @throws FressException verschiedene Fress-Exceptions, wie "nichtmehr am Leben" oder "passt nicht zum Fresstypen"
+     * @throws FressException verschiedene Fress-Exceptions, wie "nicht mehr am Leben" oder "passt nicht zum Fresstypen"
      * @throws BereitsTotException wird geworfen, falls der Meeresbewohner versucht etwas zu essen, jedoch bereits tot ist 
      * @throws NullPointerException falls der Leckerbissen Null ist
      */
@@ -88,7 +88,7 @@ public abstract class Meeresbewohner extends Akteur {
 
         // Prueft, ob der Meeresbewohner definiert und noch am Leben ist.
         if(!this.istLebendig()){
-            throw new BereitsTotException(this.NAME + " lebt nichtmehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
+            throw new BereitsTotException(this.NAME + " lebt nicht mehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
         }
 
         if(this.equals(leckerbissen)){
@@ -100,10 +100,6 @@ public abstract class Meeresbewohner extends Akteur {
             throw new NullPointerException("Der Leckerbissen ist undefiniert.");
         }
 
-        if(this.equals(leckerbissen)){
-            throw new FrisstSichSelbstException(this.NAME + " versucht sich selbst zu essen.");
-        }
-
         neuesGewicht = leckerbissen.getGramm();
 
         // Prueft, ob der Nahrungstyp dem Esstyp entspricht.
@@ -111,7 +107,7 @@ public abstract class Meeresbewohner extends Akteur {
             throw new FrisstNichtException("Der Leckerbissen " + leckerbissen.getName() + " steht nicht auf der Speisekarte des Meeresbewohners " + this.getName() + ".");
         }
 
-        // Prueft, ob, wenn der Leckerbissen dem Esstyp entspricht, der Leckerbissen gefressen werden konnte. (Beispiel falls nicht: ist nicht mehr am leben).
+        // Prueft, ob, wenn der Leckerbissen dem Esstyp entspricht, der Leckerbissen gefressen werden konnte. (Beispiel: falls nicht, ist nicht mehr am Leben).
         if(!leckerbissen.gefressen()){
             StringBuilder grund = new StringBuilder(); 
             
@@ -120,7 +116,7 @@ public abstract class Meeresbewohner extends Akteur {
             if(!leckerbissen.istLebendig()) grund.append(" (").append(leckerbissen.getName()).append(" lebt nicht mehr.)");
                 
             throw new FressException(grund.toString());
-        };
+        }
 
         // Prueft, ob der Meeresbewohner nicht bereits vollgefressen ist.
         if(berechneAktuellerAppetite() < 0){

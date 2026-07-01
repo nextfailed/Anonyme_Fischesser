@@ -20,21 +20,21 @@ public interface Leckerbissen {
 
     /**
      * Gibt zurueck, ob der Leckerbissen gefressen wurde oder nicht.
-     * Gibt immer false zurueck, falls der Leckerbissen nichtmehr lebt.
-     * @return
+     * Gibt immer false zurueck, falls der Leckerbissen nicht mehr lebt.
+     * @return Wahr oder falsch
      */
     boolean gefressen();
 
     /**
      * Gibt zurueck, ob der Leckerbissen noch lebendig ist.
      * Wird nach der Zunahme auf false gesetzt.
-     * @return
+     * @return Wahr oder falsch
      */
     boolean istLebendig();
 
     /**
      * Gibt zurueck, von welchem Nahrungstypen der Leckerbissen ist.
-     * @return
+     * @return Nahrungstyp
      */
     Nahrungstyp getNahrungstyp();
 }

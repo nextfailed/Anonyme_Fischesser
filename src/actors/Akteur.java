@@ -1,7 +1,7 @@
 package actors;
 
 /**
- * Akteure sind Interaktive Lebewesen im Meeresboden und ebenfalls Leckerbissen.
+ * Akteure sind interaktive Lebewesen im Meeresboden und ebenfalls Leckerbissen.
  * Sie besitzen vorerst keinen Magen, anders als ihre Kindklasse "Meeresbewohner", die aktiv Dinge fressen koennen.
  */
 public abstract class Akteur implements Leckerbissen {
@@ -23,12 +23,11 @@ public abstract class Akteur implements Leckerbissen {
         this.nahrungstyp = nahrungstyp;
     }
 
-
-    @Override 
     /**
      * Gibt den Namen und das Gewicht des Akteurs aus, sowie der Nahrungstyp und ob das Lebewesen noch am Leben ist.
      * @return Name und Statistik des Akteurs.
      */
+    @Override
     public String toString(){
         return (this.NAME + " (" + this.GRAMM + "g)" + " | Typ: " + nahrungstyp + " | " + (istLebendig()?"am leben":"tot"));
     }
@@ -40,21 +39,21 @@ public abstract class Akteur implements Leckerbissen {
         return NAME;
     }
 
-    @Override
     /**
      * @return Gewicht des Akteurs
      */
+    @Override
     public int getGramm() {
         return GRAMM;
     }
 
-    @Override
     /**
      * Gibt zurueck, ob der Akteur gefressen werden kann.
-     * Wenn er er noch lebendig ist, wird er gefressen, sein gewicht wird auf 0 gesetzt und es wird true zurueckgegeben.
-     *  
+     * Wenn er noch lebendig ist, wird er gefressen, sein gewicht wird auf 0 gesetzt und es wird true zurueckgegeben.
+     *
      * @return ob der Akteur gefressen werden kann
-     */ 
+     */
+    @Override
     public boolean gefressen() {
         if(istLebendig()) {
             this.GRAMM = 0;
@@ -65,20 +64,20 @@ public abstract class Akteur implements Leckerbissen {
         return false;
     }
 
-    @Override
     /**
      * Gibt true zurueck, wenn das Gewicht mindestens groesser als 0 ist.
      * Falls der Akteur gefressen wird, wird das Gewicht auf 0 gesetzt und die Methode gibt ab sofort false zurueck.
      * @return ist noch am Leben
      */
+    @Override
     public boolean istLebendig() {
         return this.GRAMM > 0;
     }
 
-    @Override
     /**
      * @return Nahrungstyp des Akteurs.
      */
+    @Override
     public Nahrungstyp getNahrungstyp() {
         return nahrungstyp;
     }

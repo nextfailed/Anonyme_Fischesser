@@ -2,3 +2,9 @@ Hammer,Steve
 Nemo,Seetang
 Bruce,Nemo
 Bruce,Seetang
+Marlin,Crush
+Puff,Muell
+Bella,Lars
+Lars,Lars
+Andre,Lars
+Lars,Andre

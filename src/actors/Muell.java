@@ -12,13 +12,6 @@ public class Muell extends Snack {
 
     protected static int ID_Counter = 0;
 
-    /* 
-    public Muell(String name, int gramm){
-        super(gramm, ALLGEMEINER_NAHRUNGSTYP);
-        this.istLebendig = false;
-    }
-    */
-
     /**
      * Der Name jedes Muells ist bereits vordefiniert.
      * @param gramm Gewicht in Gramm
@@ -43,26 +36,27 @@ public class Muell extends Snack {
         return false;
     }
 
-    @Override
+
     /**
-     * Gibt den Allgemeinen Nahrungstypen zurueck, damit dieser im Super-Konstruktor fuer jede Instanz gesetzt wurde. 
+     * Gibt den allgemeinen Nahrungstypen zurueck, damit dieser im Super-Konstruktor fuer jede Instanz gesetzt wurde.
      * @return Default-Nahrungstyp 
      */
+    @Override
     protected Nahrungstyp setNahrungstyp(){
         return ALLGEMEINER_NAHRUNGSTYP;
-    };
+    }
 
-    @Override
     /**
      * Gibt den Default-Namen jeder Muell-Instanz zurueck.
      * @return Default-Namen 'Muell' 
      */
+    @Override
     public String getDefaultName() {
         return DEFAULT_NAME;
     }
 
     /**
-     * Gibt jeder {@code Muell}-Instanz ihre eigene ID zum identifizieren.
+     * Gibt jeder {@code Muell}-Instanz ihre eigene ID zum Identifizieren.
      * @return ID des erstellten Snacks
      */
     @Override

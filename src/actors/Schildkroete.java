@@ -9,12 +9,11 @@ public class Schildkroete extends Meeresbewohner {
     public static final Nahrungstyp DEFAULT_NAHRUNGSTYP = Nahrungstyp.FLEISCH;
 
     /**
-     * 
-     * @param name
-     * @param gramm
-     * @param nahrungstyp
-     * @param esstyp
-     * @param maxMagenfuellmenge
+     * @param name Name der Schildkröte
+     * @param gramm Gewicht der Schildkröte
+     * @param nahrungstyp Nahrungstyp der Schildkröte
+     * @param esstyp Esstyp der Schildkröte
+     * @param maxMagenfuellmenge Maximale Magenfüllmenge
      */
     public Schildkroete(String name, int gramm, Nahrungstyp nahrungstyp, Esstyp esstyp, int maxMagenfuellmenge) {
         super(name, gramm, nahrungstyp, esstyp, maxMagenfuellmenge);
@@ -22,10 +21,10 @@ public class Schildkroete extends Meeresbewohner {
 
     /**
      * Ruft den normalen Konstruktor auf, gibt jedoch den Default-Nahrungstypen automatisch dazu.  
-     * @param name
-     * @param gramm
-     * @param esstyp
-     * @param maxMagenfuellmenge
+     * @param name Name der Schildkröte
+     * @param gramm Gewicht der Schildkröte
+     * @param esstyp Esstyp der Schildkröte
+     * @param maxMagenfuellmenge Maximale Magenfüllmenge
      */
     public Schildkroete(String name, int gramm, Esstyp esstyp, int maxMagenfuellmenge) {
         this(name, gramm, DEFAULT_NAHRUNGSTYP, esstyp, maxMagenfuellmenge);
