@@ -10,6 +10,8 @@ public class Muell extends Snack {
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.NICHT_ESSBAR;
     public static final int DEFAULT_GRAMM = 8;
 
+    protected static int ID_Counter = 0;
+
     /* 
     public Muell(String name, int gramm){
         super(gramm, ALLGEMEINER_NAHRUNGSTYP);
@@ -57,5 +59,10 @@ public class Muell extends Snack {
      */
     public String getDefaultName() {
         return DEFAULT_NAME;
+    }
+
+    @Override
+    protected int getCurrentID() {
+        return ID_Counter++;
     }
 }

@@ -9,6 +9,8 @@ public class Seetang extends Snack{
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.PFLANZE;
     public static final int DEFAULT_GRAMM = 2;
 
+    protected static int ID_Counter = 0;
+
     /**
      * Das Gewicht ist das einzige, was sich zwischen den Seetang-Instanzen unterscheiden kann.
      * @param gramm Gewicht
@@ -42,5 +44,10 @@ public class Seetang extends Snack{
      */
     protected Nahrungstyp setNahrungstyp() {
         return ALLGEMEINER_NAHRUNGSTYP;
+    }
+
+    @Override
+    protected int getCurrentID() {
+        return ID_Counter++;
     }
 }

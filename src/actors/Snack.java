@@ -11,6 +11,8 @@ public abstract class Snack implements Leckerbissen {
     protected int gramm;
     protected final Nahrungstyp nahrungstyp;
 
+    protected int ID;
+    
     /*
      * protected boolean istLebendig; 
      * => vorheriger Ansatz: unnoetig, da das gewicht jedes Objektes beim gefressen werden auf 0 gesetzt wird. Nachteil: Kein Objekt kann mit 0 Gramm leben.
@@ -21,6 +23,8 @@ public abstract class Snack implements Leckerbissen {
      * @param gramm Gewicht
      */
     public Snack(int gramm) {
+        this.ID = getCurrentID();
+
         this.gramm = gramm;
         this.nahrungstyp = setNahrungstyp();
     }
@@ -31,6 +35,11 @@ public abstract class Snack implements Leckerbissen {
      * @return den Gesetzten Nahrungstyp (Bsp: Muell -> Nicht Essbar)
      */
     protected abstract Nahrungstyp setNahrungstyp();
+
+    /**
+     * 
+     */
+    protected abstract int getCurrentID();
 
     @Override
     /**
@@ -49,11 +58,11 @@ public abstract class Snack implements Leckerbissen {
 
     /**
      * Muss durch das Leckerbissen-Interface initialisiert werden.
-     * Ruft automatisch die getDefaultName() auf.
+     * Ruft automatisch die getDefaultName() auf und fuegt die ID des Snacks hinzu.
      * @return Ueberbegriffs-Name
      */
     public String getName() {
-        return getDefaultName();
+        return getDefaultName() + " #" + this.ID;
     }
 
     /**
