@@ -5,11 +5,17 @@ import actors.Leckerbissen;
 import exceptions.UnbekannterAkteurException;
 import exceptions.UnbekannterLeckerbissenException;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Kümmert sich das Schreiben der Geschichte.
+ */
 public class Geschichtenerzaehler {
+
+    private static final String FILE_PATH_GESCHICHTE = "src/geschichte.txt";
 
     /**
      * Schreibt den Ablauf der Geschichte in eine Datei, indem die Szene mit den Listen aller vorhandenen Akteure
@@ -23,6 +29,8 @@ public class Geschichtenerzaehler {
      */
     public static void schreibeGeschichte(ArrayList<Akteur> akteurListe, ArrayList<String> szene) {
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("#### START ####");
+        stringBuilder.append("\n");
 
         for(String aktuellesEreignis : szene) {
             try {
@@ -53,23 +61,27 @@ public class Geschichtenerzaehler {
             }
             catch(UnbekannterAkteurException e) {
                 stringBuilder.append(e.getMessage());
+                stringBuilder.append("\n");
             }
             catch(UnbekannterLeckerbissenException e) {
                 stringBuilder.append(e.getMessage());
+                stringBuilder.append("\n");
             }
-            finally {
-                try {
-                    FileWriter fileWriter = new FileWriter("geschichte.txt");
-                    fileWriter.append(stringBuilder);
-                    fileWriter.close();
-                }
-                catch(IOException e) {
-                    System.err.println(e.getMessage());
-                }
-            }
+
         }
+
+        stringBuilder.append("#### ENDE ####");
+
+        File file = new File(FILE_PATH_GESCHICHTE);
+        writeFile(stringBuilder, file);
     }
 
+    /**
+     * Sucht in der übergebenen Liste das {@code Akteur}-Objekt mit dem übergebenen Namen.
+     * @param akteurListe Liste der Akteure
+     * @param akteurName Name des Akteurs
+     * @return {@code Akteur}-Objekt
+     */
     private static Akteur getAkteurMitNamen(ArrayList<Akteur> akteurListe, String akteurName) {
         for(Akteur aktuellerAkteur : akteurListe) {
             if(!aktuellerAkteur.toString().contains(akteurName)) {
@@ -78,5 +90,20 @@ public class Geschichtenerzaehler {
             return aktuellerAkteur;
         }
         return null;
+    }
+
+    /**
+     * Schreibt den übergebenen StringBuilder in die übergebene Datei.
+     * @param stringBuilder ein StringBuilder
+     */
+    private static void writeFile(StringBuilder stringBuilder, File file) {
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(stringBuilder.toString());
+            fileWriter.close();
+        }
+        catch(IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

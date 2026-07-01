@@ -9,8 +9,16 @@ import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
+/**
+ * Kümmert sich um das Auslesen der Dateien.
+ */
 public class FileHandler {
 
+    /**
+     * Versucht die Akteure aus der Datei, als Liste auszulesen und erstellte passende {@code Akteur}-Objekte wenn möglich.
+     * @param file Zu lesende Datei
+     * @return Liste aller Ereignisse in der Szene
+     */
     public static ArrayList<Akteur> readAkteureAsList(File file) {
         ArrayList<Akteur> akteure = new ArrayList<>();
         try {
@@ -31,6 +39,11 @@ public class FileHandler {
         return akteure;
     }
 
+    /**
+     * Versucht die Szene aus der Datei, als Liste auszulesen.
+     * @param file Zu lesende Datei
+     * @return Liste aller Ereignisse in der Szene
+     */
     public static ArrayList<String> readSceneAsList(File file) {
         ArrayList<String> szene = new ArrayList<>();
         try {

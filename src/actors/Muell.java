@@ -1,6 +1,6 @@
 package actors;
 
-public class Muell extends SimplerLeckerbissen {
+public class Muell extends Snack {
     public static final String DEFAULT_NAME = "Muell";
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.NICHT_ESSBAR;
     public static final int DEFAULT_GRAMM = 8;

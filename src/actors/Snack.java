@@ -5,7 +5,7 @@ package actors;
  * Sie besitzen lediglich ihren Grammwert und keinen direkten Namen, sondern lediglich ihren Hauptueberbegriffsnamen, wie zum Beispiel "Seetang".
  * Ihr Nahrungstyp sollte von der Oberklasse definiert werden, damit Beispielsweise nicht der Nahrungstyp sich unterscheiden kann.
  */
-public abstract class SimplerLeckerbissen implements Leckerbissen {
+public abstract class Snack implements Leckerbissen {
     protected int gramm;
     protected final Nahrungstyp nahrungstyp;
 
@@ -14,7 +14,7 @@ public abstract class SimplerLeckerbissen implements Leckerbissen {
      * => vorheriger Ansatz: unnoetig, da das gewicht jedes Objektes beim gefressen werden auf 0 gesetzt wird. Nachteil: Kein Objekt kann mit 0 Gramm leben.
     */
 
-    public SimplerLeckerbissen(int gramm) {
+    public Snack(int gramm) {
         this.gramm = gramm;
         this.nahrungstyp = setNahrungstyp();
     }
