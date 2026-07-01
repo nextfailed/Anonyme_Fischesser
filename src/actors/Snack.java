@@ -2,7 +2,7 @@ package actors;
 
 /**
  * Snacks sind Simple Leckerbissen, wie Seetang und Muell. Sie sind keine Akteure, da sie nicht aktiv am geschehen im Meer beteiligt sind und existieren lediglich, koennen jedoch gefressen werden.
- * Sie besitzen lediglich ihren Grammwert und einen oberbegrifflichen Namen, wie zum Beispiel "Seetang".
+ * Sie besitzen lediglich ihren Grammwert und einen oberbegrifflichen Namen, wie zum Beispiel "Seetang", sowie eine dazugehoerige ID als "Identifier".
  * 
  * Ihr Nahrungstyp sollte von den Kingerklassen einzeln definiert werden, damit sich Beispielsweise der  Nahrungstyp sich in der eignenen Klasse unterscheiden kann.
  * Er ist daher fest in der Klasse selbst definitiert.
@@ -11,6 +11,8 @@ public abstract class Snack implements Leckerbissen {
     protected int gramm;
     protected final Nahrungstyp nahrungstyp;
 
+    protected int ID;
+    
     /*
      * protected boolean istLebendig; 
      * => vorheriger Ansatz: unnoetig, da das gewicht jedes Objektes beim gefressen werden auf 0 gesetzt wird. Nachteil: Kein Objekt kann mit 0 Gramm leben.
@@ -21,16 +23,34 @@ public abstract class Snack implements Leckerbissen {
      * @param gramm Gewicht
      */
     public Snack(int gramm) {
+        this.ID = getCurrentID();
+
         this.gramm = gramm;
         this.nahrungstyp = setNahrungstyp();
     }
 
     /**
-     * Oberklassen muessen diese Methode protected implementieren.
+     * Da jeder Snack den selben Namen hat, kann dieser ueber die ID identifiziert werden.
+     * @return ID des Snacks
+     */
+    public int getID(){
+        return this.ID;
+    }
+
+    /**
+     * Unterklassen muessen diese Methode protected implementieren.
      * Diese Methode existiert, damit der Nahrungstyp sich nicht jedes Objekt der oberen Klasse sich vom Typen unterscheiden kann.
      * @return den Gesetzten Nahrungstyp (Bsp: Muell -> Nicht Essbar)
      */
     protected abstract Nahrungstyp setNahrungstyp();
+
+    /**
+     * Muss in den Unterklassen initialisiert werden.
+     * Gibt die momentanige ID zurueck und erhoeht diese um 1.
+     * Da die ID ueber die Unterklassen einzeln initialisiert werden, werden diese unabhaengig von den anderen Klassen erstellt.
+     * @return momentane ID, wird an getName() angehaengt
+     */
+    protected abstract int getCurrentID();
 
     @Override
     /**
@@ -49,11 +69,11 @@ public abstract class Snack implements Leckerbissen {
 
     /**
      * Muss durch das Leckerbissen-Interface initialisiert werden.
-     * Ruft automatisch die getDefaultName() auf.
+     * Ruft automatisch die getDefaultName() auf und fuegt die ID des Snacks hinzu.
      * @return Ueberbegriffs-Name
      */
     public String getName() {
-        return getDefaultName();
+        return getDefaultName() + " #" + this.ID;
     }
 
     /**

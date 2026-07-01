@@ -49,7 +49,7 @@ public class AkteurCreator {
         String akteurKlasse = arguments[0].trim().toLowerCase();
 
         return switch(akteurKlasse){
-            case "fisch" -> new Fisch(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+            case "fisch" -> new Fisch(akteurName, akteurGewicht, akteurEsstyp, akteurAppetitGrenze);
             case "schildkroete" -> new Schildkroete(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
             case "taucher" -> new Taucher(akteurName, akteurGewicht);
             case "seestern" -> new Seestern(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
