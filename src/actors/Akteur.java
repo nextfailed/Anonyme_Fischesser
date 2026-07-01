@@ -40,21 +40,21 @@ public abstract class Akteur implements Leckerbissen {
         return NAME;
     }
 
-    @Override
     /**
      * @return Gewicht des Akteurs
      */
+    @Override
     public int getGramm() {
         return GRAMM;
     }
 
-    @Override
     /**
      * Gibt zurueck, ob der Akteur gefressen werden kann.
-     * Wenn er er noch lebendig ist, wird er gefressen, sein gewicht wird auf 0 gesetzt und es wird true zurueckgegeben.
+     * Wenn er noch lebendig ist, wird er gefressen, sein gewicht wird auf 0 gesetzt und es wird true zurueckgegeben.
      *  
      * @return ob der Akteur gefressen werden kann
-     */ 
+     */
+    @Override
     public boolean gefressen() {
         if(istLebendig()) {
             this.GRAMM = 0;
@@ -75,10 +75,10 @@ public abstract class Akteur implements Leckerbissen {
         return this.GRAMM > 0;
     }
 
-    @Override
     /**
      * @return Nahrungstyp des Akteurs.
      */
+    @Override
     public Nahrungstyp getNahrungstyp() {
         return nahrungstyp;
     }

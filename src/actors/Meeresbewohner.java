@@ -89,7 +89,7 @@ public abstract class Meeresbewohner extends Akteur {
 
         // Prueft, ob der Meeresbewohner definiert und noch am Leben ist.
         if(!this.istLebendig()){
-            throw new BereitsTotException(this.NAME + " lebt nichtmehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
+            throw new BereitsTotException(this.NAME + " lebt nicht mehr und kann daher " + leckerbissen.getName() + " nicht verspeisen.");
         }
 
         // Prueft, ob das Leckerbissen-Objekt nicht leer ist.
