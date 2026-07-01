@@ -46,25 +46,39 @@ public class AkteurCreator {
         int akteurGewicht = Integer.parseInt(arguments[4]);
         int akteurAppetitGrenze = Integer.parseInt(arguments[5]);
 
-        String akteurKlasse = arguments[0];
+        String akteurKlasse = arguments[0].trim().toLowerCase();
 
+        return switch(akteurKlasse){
+            case "fisch" -> new Fisch(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+            case "schildkroete" -> new Schildkroete(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+            case "taucher" -> new Taucher(akteurName, akteurGewicht);
+            case "seestern" -> new Seestern(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
+
+            default -> throw new ClassNotFoundException("Die Klasse " + akteurKlasse + " wurde nicht gefunden.");
+        };
+
+        /*
         if(akteurKlasse.equalsIgnoreCase("fisch")) {
             return new Fisch(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
         }
-        if(akteurKlasse.equalsIgnoreCase("schildkroete")) {
+
+        else if(akteurKlasse.equalsIgnoreCase("schildkroete")) {
             return new Schildkroete(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
         }
-        if(akteurKlasse.equalsIgnoreCase("taucher")) {
+
+        else if(akteurKlasse.equalsIgnoreCase("taucher")) {
             return new Taucher(akteurName, akteurGewicht);
         }
-        if(akteurKlasse.equalsIgnoreCase("seestern")) {
-            // TODO Seestern
+
+        else if(akteurKlasse.equalsIgnoreCase("seestern")) {
+            return new Schildkroete(akteurName, akteurGewicht, akteurNahrungstyp, akteurEsstyp, akteurAppetitGrenze);
         }
+
         else {
             throw new ClassNotFoundException("Die Klasse " + akteurKlasse + " wurde nicht gefunden.");
         }
+        */
 
-        return null;
     }
 
 }

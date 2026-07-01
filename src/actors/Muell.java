@@ -1,6 +1,11 @@
 package actors;
 
-public class Muell extends SimplerLeckerbissen {
+/**
+ * Muell ist vom Typ 'Snack', ungeniesbar und kann nicht von Fischen verdaut werden.
+ * Muell ist automatisch nicht lebendig und gibt bei dem Aufruf der istLebendig() immer false zurueck.
+ * Muell
+ */
+public class Muell extends Snack {
     public static final String DEFAULT_NAME = "Muell";
     public static final Nahrungstyp ALLGEMEINER_NAHRUNGSTYP = Nahrungstyp.NICHT_ESSBAR;
     public static final int DEFAULT_GRAMM = 8;
@@ -37,11 +42,19 @@ public class Muell extends SimplerLeckerbissen {
     }
 
     @Override
+    /**
+     * Gibt den Allgemeinen Nahrungstypen zurueck, damit dieser im Super-Konstruktor fuer jede Instanz gesetzt wurde. 
+     * @return Default-Nahrungstyp 
+     */
     protected Nahrungstyp setNahrungstyp(){
         return ALLGEMEINER_NAHRUNGSTYP;
     };
 
     @Override
+    /**
+     * Gibt den Default-Namen jeder Muell-Instanz zurueck.
+     * @return Default-Namen 'Muell' 
+     */
     public String getDefaultName() {
         return DEFAULT_NAME;
     }
