@@ -5,7 +5,8 @@ import actors.Leckerbissen;
 import exceptions.UnbekannterAkteurException;
 import exceptions.UnbekannterLeckerbissenException;
 
-import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Geschichtenerzaehler {
@@ -22,7 +23,8 @@ public class Geschichtenerzaehler {
      * @param szene Liste der Ereignisse
      */
     public static void schreibeGeschichte(ArrayList<Akteur> akteurListe, ArrayList<Leckerbissen> leckerbissenListe, ArrayList<String> szene) {
-        BufferedWriter bufferedWriter;
+        StringBuilder stringBuilder = new StringBuilder();
+
         for(String aktuellesEreignis : szene) {
             try {
                 String[] ereignisArgumente = FileHandler.splitArguments(aktuellesEreignis);
@@ -47,14 +49,24 @@ public class Geschichtenerzaehler {
                     aktuellerLeckerbissen = getLeckerbissenMitNamen(leckerbissenListe, leckerbissenName);
                 }
 
-                // Lass den Akteur den Leckerbissen verspeisen, oder auch nicht.
+                // Lass den Akteur den Leckerbissen verspeisen -- oder auch nicht.
                 //TODO
             }
             catch(UnbekannterAkteurException e) {
-
+                stringBuilder.append(e.getMessage());
             }
             catch(UnbekannterLeckerbissenException e) {
-
+                stringBuilder.append(e.getMessage());
+            }
+            finally {
+                try {
+                    FileWriter fileWriter = new FileWriter("geschichte.txt");
+                    fileWriter.append(stringBuilder);
+                    fileWriter.close();
+                }
+                catch(IOException e) {
+                    System.err.println(e.getMessage());
+                }
             }
         }
     }
