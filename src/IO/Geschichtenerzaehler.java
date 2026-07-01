@@ -16,13 +16,12 @@ public class Geschichtenerzaehler {
      * und aller Leckerbissen verglichen wird. Wenn sowohl der Akteur, als auch der Leckerbissen in der Liste vorhanden sind,
      * wird das Ereignis in der Geschichte verzeichnet.
      * <p>
-     *     HINWEIS: Auch wenn der Akteur oder Leckerbissen nicht vorhanden ist, wird dies in der Datei vermerkt.
+     *     <u>HINWEIS:</u> Auch wenn der Akteur oder Leckerbissen nicht vorhanden ist, wird dies in der Datei vermerkt.
      * </p>
      * @param akteurListe Liste aller vorhandenen Akteure
-     * @param leckerbissenListe Liste aller vorhandenen Leckerbissen
      * @param szene Liste der Ereignisse
      */
-    public static void schreibeGeschichte(ArrayList<Akteur> akteurListe, ArrayList<Leckerbissen> leckerbissenListe, ArrayList<String> szene) {
+    public static void schreibeGeschichte(ArrayList<Akteur> akteurListe, ArrayList<String> szene) {
         StringBuilder stringBuilder = new StringBuilder();
 
         for(String aktuellesEreignis : szene) {
@@ -42,12 +41,12 @@ public class Geschichtenerzaehler {
                 String leckerbissenName = ereignisArgumente[1];
                 Leckerbissen aktuellerLeckerbissen;
 
-                if(!leckerbissenListe.toString().contains(leckerbissenName)) {
-                    throw new UnbekannterLeckerbissenException(leckerbissenName + " befindet sich nicht in diesen Gewässern.");
-                }
-                else {
-                    aktuellerLeckerbissen = getLeckerbissenMitNamen(leckerbissenListe, leckerbissenName);
-                }
+//                if(!leckerbissenListe.toString().contains(leckerbissenName)) {
+//                    throw new UnbekannterLeckerbissenException(leckerbissenName + " befindet sich nicht in diesen Gewässern.");
+//                }
+//                else {
+//                    aktuellerLeckerbissen = getLeckerbissenMitNamen(leckerbissenListe, leckerbissenName);
+//                }
 
                 // Lass den Akteur den Leckerbissen verspeisen -- oder auch nicht.
                 //TODO
@@ -77,16 +76,6 @@ public class Geschichtenerzaehler {
                 continue;
             }
             return aktuellerAkteur;
-        }
-        return null;
-    }
-
-    private static Leckerbissen getLeckerbissenMitNamen(ArrayList<Leckerbissen> leckerbissenListe, String leckerbissenName) {
-        for(Leckerbissen aktuellerLeckerbissen : leckerbissenListe) {
-            if(!aktuellerLeckerbissen.toString().contains(leckerbissenName)) {
-                continue;
-            }
-            return aktuellerLeckerbissen;
         }
         return null;
     }

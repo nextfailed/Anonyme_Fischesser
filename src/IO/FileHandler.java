@@ -1,6 +1,7 @@
 package IO;
 
 import actors.*;
+import actors.Leckerbissen;
 import de.hsrm.mi.prog2.TextIO;
 
 import java.io.File;
@@ -13,10 +14,10 @@ public class FileHandler {
     public static ArrayList<Akteur> readAkteureAsList(File file) {
         ArrayList<Akteur> akteure = new ArrayList<>();
         try {
-            ArrayList<String> fileStream = TextIO.read(file);
+            ArrayList<java.lang.String> fileStream = TextIO.read(file);
 
-            for(String currentLine : fileStream) {
-                String[] arguments = splitArguments(currentLine);
+            for(java.lang.String currentLine : fileStream) {
+                java.lang.String[] arguments = splitArguments(currentLine);
                 Akteur newAkteur = createAkteur(arguments);
                 akteure.add(newAkteur);
             }
@@ -30,16 +31,10 @@ public class FileHandler {
         return akteure;
     }
 
-    public static ArrayList<Leckerbissen> readSceneAsList(File file) {
-        ArrayList<Leckerbissen> szene = new ArrayList<>();
+    public static ArrayList<String> readSceneAsList(File file) {
+        ArrayList<String> szene = new ArrayList<>();
         try {
-            ArrayList<String> fileStream = TextIO.read(file);
-
-            for(String currentLine : fileStream) {
-                String[] arguments = splitArguments(currentLine);
-                Leckerbissen leckerbissen = createLeckerbissen(arguments);
-                szene.add(leckerbissen);
-            }
+            return TextIO.read(file);
         }
         catch(IOException e) {
             e.printStackTrace();
