@@ -1,10 +1,146 @@
-#### START ####
+
+Alle Akteure und Gegenstände im Ozean:
+Bruce: lebendig | (3500000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Hammer: lebendig | (1800000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Hart: lebendig | (2200000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Nemo: lebendig | (5 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Marlin: lebendig | (10 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Nemo: lebendig | (5 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Crush: lebendig | (15000 g) | Nahrungstyp: FLEISCH | Esstyp: VEGANER
+   Magen: 
+
+Racker: lebendig | (50 g) | Nahrungstyp: FLEISCH | Esstyp: VEGANER
+   Magen: 
+
+Puff: lebendig | (200 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Blubble: lebendig | (300 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Kahn: lebendig | (300 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Lee: lebendig | (240 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Bella: lebendig | (200 g) | Nahrungstyp: NICHT_ESSBAR | Esstyp: FLEISCHESSER
+   Magen: 
+
+Lars: lebendig | (75000 g) | Nahrungstyp: FISCH | Esstyp: ALLES_ESSER
+   Magen: 
+
+Andre: lebendig | (70000 g) | Nahrungstyp: FISCH | Esstyp: FLEXITARIER
+   Magen: 
+
+Seetang #0 (lebendig)
+Seetang #1 (lebendig)
+Seetang #2 (lebendig)
+Seetang #3 (lebendig)
+Seetang #4 (lebendig)
+Seetang #5 (lebendig)
+Seetang #6 (lebendig)
+Seetang #7 (lebendig)
+Steve: lebendig | (80000 g) | Nahrungstyp: FLEISCH
+Alex: lebendig | (60000 g) | Nahrungstyp: FLEISCH
+Muell #0 (tot)
+Muell #1 (tot)
+Muell #2 (tot)
+Muell #3 (tot)
+Muell #4 (tot)
+Muell #5 (tot)
+Muell #6 (tot)
+Muell #7 (tot)
+
+#### Und die Geschichte verläuf wie folgt: #####
 Der Leckerbissen Steve steht nicht auf der Speisekarte des Meeresbewohners Hammer.
+Nemo frisst Seetang.
 Der Leckerbissen Nemo steht nicht auf der Speisekarte des Meeresbewohners Bruce.
 Seetang #0 konnte nicht gefressen werden. (Seetang #0 lebt nicht mehr.)
 Der Leckerbissen Crush steht nicht auf der Speisekarte des Meeresbewohners Marlin.
 Der Leckerbissen Muell #0 steht nicht auf der Speisekarte des Meeresbewohners Puff.
 Der Leckerbissen Lars steht nicht auf der Speisekarte des Meeresbewohners Bella.
 Lars versucht sich selbst zu essen.
-Lars lebt nichtmehr und kann daher Andre nicht verspeisen.
-#### ENDE ####
+Andre frisst Lars.
+Lars lebt nicht mehr und kann daher Andre nicht verspeisen.
+#### Ende der Geschichte! ####
+
+Alle Akteure und Gegenstände im Ozean:
+Bruce: lebendig | (3500000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Hammer: lebendig | (1800000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Hart: lebendig | (2200000 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Nemo: lebendig | (10 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+      - Seetang #0
+
+Marlin: lebendig | (10 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Nemo: lebendig | (5 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Crush: lebendig | (15000 g) | Nahrungstyp: FLEISCH | Esstyp: VEGANER
+   Magen: 
+
+Racker: lebendig | (50 g) | Nahrungstyp: FLEISCH | Esstyp: VEGANER
+   Magen: 
+
+Puff: lebendig | (200 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Blubble: lebendig | (300 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Kahn: lebendig | (300 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Lee: lebendig | (240 g) | Nahrungstyp: FISCH | Esstyp: VEGANER
+   Magen: 
+
+Bella: lebendig | (200 g) | Nahrungstyp: NICHT_ESSBAR | Esstyp: FLEISCHESSER
+   Magen: 
+
+Lars: tot | (0 g) | Nahrungstyp: FISCH | Esstyp: ALLES_ESSER
+   Magen: 
+
+Andre: lebendig | (145000 g) | Nahrungstyp: FISCH | Esstyp: FLEXITARIER
+   Magen: 
+      - Lars
+
+Seetang #0 (tot)
+Seetang #1 (lebendig)
+Seetang #2 (lebendig)
+Seetang #3 (lebendig)
+Seetang #4 (lebendig)
+Seetang #5 (lebendig)
+Seetang #6 (lebendig)
+Seetang #7 (lebendig)
+Steve: lebendig | (80000 g) | Nahrungstyp: FLEISCH
+Alex: lebendig | (60000 g) | Nahrungstyp: FLEISCH
+Muell #0 (tot)
+Muell #1 (tot)
+Muell #2 (tot)
+Muell #3 (tot)
+Muell #4 (tot)
+Muell #5 (tot)
+Muell #6 (tot)
+Muell #7 (tot)
+

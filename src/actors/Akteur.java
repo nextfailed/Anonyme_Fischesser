@@ -29,7 +29,12 @@ public abstract class Akteur implements Leckerbissen {
      */
     @Override
     public String toString(){
-        return (this.NAME + " (" + this.GRAMM + "g)" + " | Typ: " + nahrungstyp + " | " + (istLebendig()?"am leben":"tot"));
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.NAME);
+        stringBuilder.append(": ").append((istLebendig()?"lebendig":"tot"));
+        stringBuilder.append(" | (").append(this.GRAMM).append(" g)");
+        stringBuilder.append(" | Nahrungstyp: ").append(nahrungstyp);
+        return stringBuilder.toString();
     }
 
     /**

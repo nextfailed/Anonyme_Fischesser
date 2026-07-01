@@ -28,7 +28,9 @@ public class Geschichtenerzaehler {
      */
     public static void schreibeGeschichte(ArrayList<Leckerbissen> akteurListe, ArrayList<String> szene) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("#### START ####");
+        stringBuilder.append(alleAkteureToString(akteurListe));
+        stringBuilder.append("\n");
+        stringBuilder.append("#### Und die Geschichte verläuf wie folgt: #####");
         stringBuilder.append("\n");
 
         for(String aktuellesEreignis : szene) {
@@ -38,7 +40,7 @@ public class Geschichtenerzaehler {
                 String akteurName = ereignisArgumente[0];
                 String snackName = ereignisArgumente[1];
                 Leckerbissen aktuellerAkteur;
-                Leckerbissen akteullerSnack;
+                Leckerbissen aktuellerSnack;
 
                 if(!akteurListe.toString().contains(akteurName)) {
                     throw new UnbekannterAkteurException(akteurName + " befindet sich nicht in diesen Gewässern.");
@@ -51,34 +53,26 @@ public class Geschichtenerzaehler {
                     throw new UnbekannterLeckerbissenException(snackName + " befindet sich nicht in diesen Gewässern.");
                 }
                 else {
-                    akteullerSnack = getLeckerbissenMitNamen(akteurListe, snackName);
+                    aktuellerSnack = getLeckerbissenMitNamen(akteurListe, snackName);
                 }
 
                 // Lass den Akteur den Leckerbissen verspeisen -- oder auch nicht.
                 if(aktuellerAkteur instanceof Meeresbewohner) {
-                    ((Meeresbewohner) aktuellerAkteur).fressen(akteullerSnack);
+                    ((Meeresbewohner) aktuellerAkteur).fressen(aktuellerSnack);
+                    stringBuilder.append(akteurName).append(" frisst ").append(snackName).append(".");
+                    stringBuilder.append("\n");
                 }
 
             }
-            catch(UnbekannterAkteurException e) {
-                stringBuilder.append(e.getMessage());
-                stringBuilder.append("\n");
-            }
-            catch(UnbekannterLeckerbissenException e) {
-                stringBuilder.append(e.getMessage());
-                stringBuilder.append("\n");
-            }
-            catch(FrisstNichtException e) {
-                stringBuilder.append(e.getMessage());
-                stringBuilder.append("\n");
-            }
-            catch(FressException e) {
+            catch(UnbekannterAkteurException | UnbekannterLeckerbissenException | FressException e) {
                 stringBuilder.append(e.getMessage());
                 stringBuilder.append("\n");
             }
         }
-
-        stringBuilder.append("#### ENDE ####");
+        stringBuilder.append("#### Ende der Geschichte! ####");
+        stringBuilder.append("\n");
+        stringBuilder.append(alleAkteureToString(akteurListe));
+        stringBuilder.append("\n");
 
         File file = new File(FILE_PATH_GESCHICHTE);
         writeFile(stringBuilder, file);
@@ -113,5 +107,20 @@ public class Geschichtenerzaehler {
         catch(IOException e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    private static String alleAkteureToString(ArrayList<Leckerbissen> akteurListe) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("\n");
+        stringBuilder.append("Alle Akteure und Gegenstände im Ozean:");
+        stringBuilder.append("\n");
+
+        for(Leckerbissen aktuellerLeckerbissen : akteurListe) {
+            stringBuilder.append(aktuellerLeckerbissen);
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
     }
 }

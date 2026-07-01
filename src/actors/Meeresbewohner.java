@@ -42,11 +42,12 @@ public abstract class Meeresbewohner extends Akteur {
         StringBuilder output = new StringBuilder();
         String einruecken = "   ";
 
-        output.append(super.toString()).append('\n');
+        output.append(super.toString());
+        output.append(" | Esstyp: ").append(esstyp).append('\n');
         output.append(einruecken).append("Magen: ").append('\n');
 
         for(Leckerbissen currentLeckerbissen : magen){
-            output.append(einruecken.repeat(2)).append('#').append(currentLeckerbissen.getName()).append('\n') ;
+            output.append(einruecken.repeat(2)).append("- ").append(currentLeckerbissen.getName()).append('\n') ;
         }
 
 
@@ -83,7 +84,7 @@ public abstract class Meeresbewohner extends Akteur {
      * @throws BereitsTotException wird geworfen, falls der Meeresbewohner versucht etwas zu essen, jedoch bereits tot ist 
      * @throws NullPointerException falls der Leckerbissen Null ist
      */
-    public void fressen(Leckerbissen leckerbissen) throws FressException, NullPointerException{
+    public boolean fressen(Leckerbissen leckerbissen) throws FressException, NullPointerException{
         int neuesGewicht; // Speichert das Gewicht des Leckerbissens ab, da es bei dem Aufruf von gefressen() automatisch auf 0 gesetzt wird.
 
         // Prueft, ob der Meeresbewohner definiert und noch am Leben ist.
@@ -127,6 +128,7 @@ public abstract class Meeresbewohner extends Akteur {
         magen.add(leckerbissen);
         this.momentanerAppetit += neuesGewicht;
         this.GRAMM += neuesGewicht;
+        return true;
     }
 
 }
